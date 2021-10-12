@@ -1,5 +1,13 @@
 <div class="device-table" *ngIf="deviceTable">
-  <table class="device-table__table">
+  <div class="m-10">
+  <mat-form-field  class="m-10">
+    <mat-label class="gray-color">Search model here..</mat-label>
+    <input matInput [(ngModel)]="inputData" appInputDebounce (callBack)="searchModel()" 
+    >
+    <mat-icon class="search-icon" aria-hidden="false" aria-label="Example search icon">search</mat-icon>
+  </mat-form-field>
+  </div>
+  <table class="device-table__table m-10">
     <caption class="device-table__caption">{{ deviceTable.title }}</caption>
     <thead>
       <th *ngFor="let header of deviceTable.headers" class="device-table__th">
@@ -7,11 +15,13 @@
       </th>
     </thead>
     <tbody>
-      <tr *ngFor="let row of deviceTable.rows">
+      <tr *ngFor="let row of filteredDeviceTable.rows">
         <td *ngFor="let column of deviceTable.headers">
           {{ row[column] }}
         </td>
       </tr>
     </tbody>
   </table>
+  <div *ngIf="filteredDeviceTable.rows.length === 0"
+  class="text-center m-10">Model not found</div>
 </div>

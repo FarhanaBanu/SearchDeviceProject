@@ -1,10 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { DeviceTable } from 'src/app/models/device-table.model';
 import { Device } from 'src/app/models/device.model';
 import { DemoMaterialModule } from 'src/app/modules/material.module';
-
+import { DeviceService } from 'src/app/services/device.service';
 import { TableComponent } from './table.component';
+import * as Rx from 'rxjs';
+import { delay } from "rxjs/operators";
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -68,10 +70,15 @@ describe('TableComponent', () => {
   describe('ngOnInit', () => {
     it('should set deviceTable to response from service', () => {
       component.deviceTable = null;
+      component.ngOnInit();      
+      // const service = fixture.debugElement.injector.get(DeviceService);
+      // let spy_getPosts = spyOn(service,"getAll").and.callFake(() => {
+      //   return Rx.of(devicesTableFixture);
+      // });
+      // component.setupTable();
+      // tick(500);
+      expect(component.deviceTable).toEqual(devicesTableFixture)
 
-      component.ngOnInit();
-
-      expect(component.deviceTable).toEqual(devicesTableFixture);
     });
   });
 });

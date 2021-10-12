@@ -25,3 +25,34 @@ $card-shadow: 0 4px 9px rgba(0, 0, 0, .2);
     }
   }
 }
+
+
+.m-10 {
+  margin:10px !important;
+
+}
+.mat-form-field {
+  width:calc(100% - 50px) !important;
+}
+
+.gray-color {
+  color:gray !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  border-bottom: 2px solid gray !important;
+}
+
+.mat-form-field-appearance-fill ::ng-deep .mat-form-field-infix:hover {
+  border-bottom: 2px solid gray !important;
+}
+
+.search-icon {
+  position: absolute !important;
+  margin-left: -25px !important;
+  margin-bottom:10px !important;
+}

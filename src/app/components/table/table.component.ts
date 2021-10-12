@@ -10,6 +10,8 @@ import { DeviceService } from 'src/app/services/device.service';
 export class TableComponent implements OnInit {
 
   deviceTable: DeviceTable;
+  filteredDeviceTable: DeviceTable;
+  inputData: any = "";
 
   constructor(private deviceService: DeviceService) { }
 
@@ -17,10 +19,16 @@ export class TableComponent implements OnInit {
     this.setupTable();
   }
 
-  private setupTable(): void {
+   setupTable(): void {
     this.deviceService.getAll().subscribe((data: DeviceTable) => {
       this.deviceTable = data;
+      this.filteredDeviceTable = JSON.parse(JSON.stringify(data));  
     });
   }
 
+  searchModel() {
+    this.filteredDeviceTable.rows = this.deviceTable.rows.filter(ele => {
+    return ele.model.toLowerCase().includes(this.inputData.toLowerCase());
+  })
+  }
 }
